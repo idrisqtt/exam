@@ -132,7 +132,19 @@ const App: React.FC = () => {
           onCategoryChange={handleCategoryChange}
         />
 
-        <Box sx={{ display: 'flex', gap: 2, justifyContent: 'center', mb: 4 }}>
+        <Box 
+          sx={{ 
+            display: 'flex', 
+            flexDirection: { xs: 'column', sm: 'row' },
+            gap: 2, 
+            justifyContent: 'center',
+            alignItems: 'stretch',
+            mb: 4,
+            '& .MuiButton-root': {
+              width: { xs: '100%', sm: 'auto' }
+            }
+          }}
+        >
           <Button
             variant="contained"
             startIcon={<ShuffleIcon />}
