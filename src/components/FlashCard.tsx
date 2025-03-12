@@ -23,48 +23,78 @@ const FlashCard: React.FC<FlashCardProps> = ({ card }) => {
       }}
       onClick={handleClick}
     >
-      <Card
+      <Box
         sx={{
+          position: 'relative',
           width: '100%',
           height: '100%',
-          position: 'relative',
           transformStyle: 'preserve-3d',
           transition: 'transform 0.6s',
           transform: isFlipped ? 'rotateY(180deg)' : 'rotateY(0)',
         }}
       >
-        <CardContent
+        {/* Передняя сторона */}
+        <Card
           sx={{
             position: 'absolute',
             width: '100%',
             height: '100%',
             backfaceVisibility: 'hidden',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            backgroundColor: '#3498db',
-            color: 'white',
+            WebkitBackfaceVisibility: 'hidden',
           }}
         >
-          <Typography variant="body1">{card.question}</Typography>
-        </CardContent>
-        <CardContent
+          <CardContent
+            sx={{
+              height: '100%',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              backgroundColor: '#3498db',
+              color: 'white',
+              padding: '20px',
+              textAlign: 'center',
+            }}
+          >
+            <Typography variant="body1">{card.question}</Typography>
+          </CardContent>
+        </Card>
+
+        {/* Задняя сторона */}
+        <Card
           sx={{
             position: 'absolute',
             width: '100%',
             height: '100%',
             backfaceVisibility: 'hidden',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            backgroundColor: '#2ecc71',
-            color: 'white',
+            WebkitBackfaceVisibility: 'hidden',
             transform: 'rotateY(180deg)',
           }}
         >
-          <Typography variant="body1">{card.answer}</Typography>
-        </CardContent>
-      </Card>
+          <CardContent
+            sx={{
+              height: '100%',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              backgroundColor: '#2ecc71',
+              color: 'white',
+              padding: '20px',
+              textAlign: 'center',
+            }}
+          >
+            <Typography 
+              variant="body1" 
+              sx={{ 
+                wordBreak: 'break-word',
+                maxHeight: '100%',
+                overflow: 'auto'
+              }}
+            >
+              {card.answer}
+            </Typography>
+          </CardContent>
+        </Card>
+      </Box>
     </Box>
   );
 };
